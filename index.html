@@ -6,21 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project One</title>
     <link rel="stylesheet" href="./assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
-    <header id="header">
-        <h1>Temporary Placeholder</h1>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Nutrition Finder</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#food-search">Search</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
-    <p>Enter a food below to discover the nutrition facts!</p>
+    <p class="">Enter a food below to discover the nutrition facts!</p>
     <form>
-        <label for="food">Enter food here:</label>
-        <input type="text" placeholder="Search..." name="food" id="food-search" />
+        <div class="row">
+            <label class="row" for="food">Enter food here:</label>
+                <input class="col s6 offset-s1" type="text" placeholder="Search..." name="food" id="food-search" />
+        </div>
     </form>
 </body>
-<footer>
-    <div>
-        <a href="#">Read Our Privacy Policy</a>
-        &copy; 2021 Temporary Placeholder
+<footer class="page-footer">
+    <div class="container">
+      <div class="footer-copyright">
+        <div class="container">
+        © 2021 Nutrition Finder
+        <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>
+        <a class="grey-text text-lighten-4 right" href="https://foodish-api.herokuapp.com">Foodish</a>
+        </div>
     </div>
 </footer>
 </html>
