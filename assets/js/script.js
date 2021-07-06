@@ -1,27 +1,23 @@
-var userFormEl = document.querySelector("#user-form");
-var itemEl = document.querySelector("#item");
-var getItem = function () {
-    fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${itemEl}`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "x-app-id": "28ed598f",
-                "x-app-key": "0ac605ceefb60fee2ab1555151d8058f",
-            },
-        }
-    )
-        .then(function (response) {
-            return response.json();
-            console.log(response);
-        })
-        .then(function (data) {
-            console.log(data);
-        });
+// first, capture the value that is entered by the user when the button is clicked
+
+var buttonEl = document.querySelector("#btn");
+var foodNameEl = document.getElementById("food-name").value;
+
+var foodNameEl2 = function getInputValue() {
+    // Selecting the input element and get its value 
+    var inputVal = document.getElementById("food-name").value;
+    
+    // Displaying the value
+    alert(inputVal);
 }
-var formSubmitHandler = function (event) {
-    event.preventDefault();
-    console.log(event);
-};
+
+buttonEl.addEventListener("click", foodNameEl2);
 
 
-userFormEl.addEventListener("submit", formSubmitHandler);
+
+// var food = $("#search-form").on("click", "input", function () {
+//     var text = $(this)
+//         .text()
+//         .trim();
+//     console.log(text);
+// });
