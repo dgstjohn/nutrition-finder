@@ -8,18 +8,17 @@
 
 var buttonEl = document.querySelector("#btn");
 
-function getValue() {
-  var inputEl = document.getElementById("#food-name").value;
-  console.log(inputEl);
-  inputEl.trim() = inputEl;
+var food = function getValue() {
+  var inputEl = document.getElementById("food-name").value;
+  // inputEl.trim() = inputEl; // rewrite this function in JQuery
   return inputEl;
 }
 
-buttonEl.addEventListener("click", getValue());
-
+buttonEl.addEventListener("click", food);
 
 function makeQuery1() {
-  fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=` + inputEl + `&detailed=true&branded=false`,
+  var foodname = document.querySelector("input[name='food-name'].value");
+  fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +34,9 @@ function makeQuery1() {
       console.log(data);
     });
 };
+
+makeQuery1();
+console.log(nameQuery1);
 
 
 // console.dir(document);
