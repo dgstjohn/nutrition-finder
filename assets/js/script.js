@@ -2,8 +2,9 @@
 var buttonEl = document.querySelector("#btn");
 var searchContainerEl = document.querySelector("#search-return");
 var nutrientsContainer = document.querySelector("#nutrients");
+
+// variables for nutrient info aimed at spans
 var sodiumValueEl = document.querySelector("#sodium");
-// variables for nutrient info aimed at spa
 var potassiumValueEl = document.querySelector("#potassium");
 var carbsValueEl = document.querySelector("#carbs");
 var sugarsValueEl = document.querySelector("#sugars");
