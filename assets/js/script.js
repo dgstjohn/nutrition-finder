@@ -1,4 +1,4 @@
-// variables for HTML placement
+on// variables for HTML placement
 var buttonEl = document.querySelector("#btn");
 var searchContainerEl = document.querySelector("#search-return");
 var nutrientsContainer = document.querySelector("#nutrients");
@@ -17,7 +17,7 @@ function makeQuery1() {
     // clear any prior instances of h2 from search term return
     var displaySearch = document.createElement("h2");
     displaySearch.textContent = "";
-    searchContainerEl.replaceWith("");
+    searchContainerEl.textContent("");
 
     // API call
     fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
