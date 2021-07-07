@@ -2,23 +2,23 @@
 var buttonEl = document.querySelector("#btn");
 var searchContainerEl = document.querySelector("#search-return");
 var nutrientsContainer = document.querySelector("#nutrients");
-​
+
 // variables for nutrient info aimed at spans
 var sodiumValueEl = document.querySelector("#sodium");
 var potassiumValueEl = document.querySelector("#potassium");
 var carbsValueEl = document.querySelector("#carbs");
 var sugarsValueEl = document.querySelector("#sugars");
-​
+
 // fetch request for data
 function makeQuery1() {
     // set value of search term
     var foodname = document.querySelector("#food-name").value.trim();
-​
+
     // clear any prior instances of h2 from search term return
     var displaySearch = document.createElement("h2");
     displaySearch.textContent = "";
     searchContainerEl.replaceWith("");
-​
+
     // API call
     fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
         {
@@ -36,7 +36,7 @@ function makeQuery1() {
             displayData(data, foodname)
             // console.log(data);
         });
-​
+
     // loop through first index of returned array to place nutrient info based on index value
     var displayData = function (common, foodname) {
         console.log(common);
@@ -52,19 +52,18 @@ function makeQuery1() {
             sugarsValueEl.textContent = sugarsValue;
         }
     };
-​
-​
+
     if (foodname.value === "") {
         alert("You must type in the name of a food!");
         foodname.value = "";
     }
-​
+
     // display search term as header
     displaySearch.textContent = foodname;
     searchContainerEl.appendChild(displaySearch);
-​
+
 };
-​
+
 // Create a function called `myFunction()`
 function makeQuery2() {
     // Create a variable called `searchTerm` that will use `document.querySelector()` to target the `id` of the input
@@ -90,6 +89,6 @@ function makeQuery2() {
         // Clear the search bar after the food is searched
        document.getElementById('searchTerm').value = ""
       }
-​
+
 buttonEl.addEventListener("click", makeQuery1);
 buttonEl.addEventListener("click", makeQuery2);
