@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
+    <script type="text/javascript" src="./assets/js/materialize.js"></script>
     <header>
         <nav>
             <div class="nav-wrapper">
@@ -19,22 +20,23 @@
             </div>
         </nav>
     </header>
-    <p class="">Enter a food below to discover the nutrition facts!</p>
+    <h5 class="col s1 offset-s1">Enter a food below to discover the nutrition facts!</h5>
     <form>
         <div class="row">
             <label class="row" for="food">Enter food here:</label>
-                <input class="col s6 offset-s1" type="text" placeholder="Search..." name="food" id="food-search" />
+                <input class="col s4 offset-s1" type="text" placeholder="Search..." name="food" id="food-search" />
+                <button class="row offset-s1"id="btn">Search</button>
         </div>
     </form>
-</body>
-<footer class="page-footer">
-    <div class="container">
-      <div class="footer-copyright">
+    <footer class="page-footer">
         <div class="container">
-        © 2021 Nutrition Finder
-        <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>
-        <a class="grey-text text-lighten-4 right" href="https://foodish-api.herokuapp.com">Foodish</a>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2021 Nutrition Finder
+            <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>
+            <a class="grey-text text-lighten-4 right" href="https://foodish-api.herokuapp.com">Foodish</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</body>
 </html>
