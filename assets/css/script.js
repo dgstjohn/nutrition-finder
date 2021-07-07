@@ -13,8 +13,9 @@ function myFunction() {
       .then(function(results) {
         console.log("second.then.results",results)
         console.log("logging image URL", results.image)
-        var img = document.createElement("img")
-        img.setAttribute("src",results.image)
-        document.querySelector("#food-container").append(img)
+        document.querySelector("#food-container").innerHTML = `<div class="row"><div class="col s3"><img src="${results.image}" style="width:100%"></div></div>`
       })
+        // Clear the search bar after the food is searched
+       document.getElementById('searchTerm').value = ""
+       // Create an error m
     }
