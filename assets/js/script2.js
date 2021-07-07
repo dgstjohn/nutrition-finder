@@ -4,6 +4,7 @@
 // this triggers the first formHandlerSubmit function.
 // The formHandlerSubmit must run before we can have a value to insert into the API fetch() request. 
 // It is there to get that value, period.
+// We save that value into a variable, insert the variable into the fetch() request to the nutritionix API and make that request. (The request is async. Do we need to pause the script somehow to wait for those results?)
 
 
 var buttonEl = document.querySelector("#btn");
@@ -14,10 +15,11 @@ var food = function getValue() {
   return inputEl;
 }
 
-buttonEl.addEventListener("click", food);
+buttonEl.addEventListener("click", makeQuery1);
 
 function makeQuery1() {
-  var foodname = document.querySelector("input[name='food-name'].value");
+  var foodname = document.querySelector("#food-name").value;
+  // console.log(foodname);
   fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
     {
       headers: {
@@ -35,14 +37,7 @@ function makeQuery1() {
     });
 };
 
-makeQuery1();
-console.log(nameQuery1);
-
-
-// console.dir(document);
-
-// 4. We save that value into a variable, insert the variable into the fetch() request to the nutritionix API and make that request. (The request is async. Do we need to pause the script somehow to wait for those results?)
-// 5. nutritionix (theoretically) sends back a JSON object with the data from that request.
+// 5. nutritionix  sends back a JSON object with the data from that request.
 // 6. We parse the JSON into an array, loop through the array for the first (number of) choices, insert those choices into divs set up to catch those and display those choices to narrow the search. These are also clickable, so a second form handler is needed.
 // 7. The user clicks on one of those; the event listener for the second form handler calls a function for the button clicked to insert that term into a second API fetch() to nutritionix.
 // 8. nutritionix (theoretically) returns the data from the second fetch() as a JSON object, which we then parse to turn into an array; we then display chosen results into a div written to catch the nutrient values.
