@@ -9,17 +9,16 @@
 
 var buttonEl = document.querySelector("#btn");
 
-var food = function getValue() {
-  var inputEl = document.getElementById("food-name").value;
-  // inputEl.trim() = inputEl; // rewrite this function in JQuery
-  return inputEl;
-}
-
-buttonEl.addEventListener("click", makeQuery1);
+// var food = function getValue() {
+//   var inputEl = document.getElementById("food-name").value;
+//   return inputEl;
+// }
 
 function makeQuery1() {
-  var foodname = document.querySelector("#food-name").value;
-  // console.log(foodname);
+  var foodname = document.querySelector("#food-name").value.trim();
+  var displaySearch = document.createElement("h2");
+  displaySearch.textContent = "";
+  // empty box/bad name if statement goes here, not farther down
   fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
     {
       headers: {
@@ -35,7 +34,59 @@ function makeQuery1() {
     .then(function (data) {
       console.log(data);
     });
+  //next stuff here
+  // if statement for empty or bad search -- inside function?
+  if (Array.length === 0 || foodname.value === "") {
+    alert("Nothing by that name! Try again");
+    foodname.value = "";
+  }
+
+  // variables for search term and nutrient categories -- also inside function
+  var searchContainerEl = document.querySelector("#search-return");
+  var nutrientsContainer = document.querySelector("#nutrients");
+  displaySearch.textContent = foodname;
+  searchContainerEl.appendChild(displaySearch);
+
+  var sodiumValue = common[0].full_nutrients[17].value;
+  var potassiumValue = common[0].full_nutrients[16].value;
+  var carbsValue = common[0].full_nutrients[2].value;
+  var sugarsValue = common[0].full_nutrients[10].value;
+
+  var sodiumValueEl = document.querySelector("#sodium");
+  var potassiumValueEl = document.querySelector("#potassium");
+  var carbsValueEl = document.querySelector("#carbs");
+  var sugarsValueEl = document.querySelector("#sugars");
+
+  sodiumValueEl.textContent = sodiumValue;
+  potassiumValueEl.textContent = potassiumValue;
+  carbsValueEl.textContent = carbsValue;
+  sugarsValueEl.textContent = sugarsValue;
+
+
 };
+
+buttonEl.addEventListener("click", makeQuery1);
+
+var sodiumValue = common[0].full_nutrients[17].value;
+var potassiumValue = common[0].full_nutrients[16].value;
+var carbsValue = common[0].full_nutrients[2].value;
+var sugarsValue = common[0].full_nutrients[10].value;
+
+var sodiumValueEl = document.querySelector("#sodium");
+var potassiumValueEl = document.querySelector("#potassium");
+var carbsValueEl = document.querySelector("#carbs");
+var sugarsValueEl = document.querySelector("#sugars");
+
+sodiumValueEl.textContent = sodiumValue;
+potassiumValueEl.textContent = potassiumValue;
+carbsValueEl.textContent = carbsValue;
+sugarsValueEl.textContent = sugarsValue;
+
+
+
+
+
+
 
 // 5. nutritionix  sends back a JSON object with the data from that request.
 // 6. We parse the JSON into an array, loop through the array for the first (number of) choices, insert those choices into divs set up to catch those and display those choices to narrow the search. These are also clickable, so a second form handler is needed.
