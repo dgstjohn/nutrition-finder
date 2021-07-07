@@ -39,3 +39,11 @@ button {
 h2:first-letter {
     text-transform: capitalize;
 }
+
+h4 {
+    color:#84a59d;
+}
+
+p {
+    color:#84a59d;
+}
