@@ -8,16 +8,32 @@
 
 
 var buttonEl = document.querySelector("#btn");
-
-// var food = function getValue() {
-//   var inputEl = document.getElementById("food-name").value;
-//   return inputEl;
-// }
+var searchContainerEl = document.querySelector("#search-return");
+var nutrientsContainer = document.querySelector("#nutrients");
+var sodiumValueEl = document.querySelector("#sodium");
+var potassiumValueEl = document.querySelector("#potassium");
+var carbsValueEl = document.querySelector("#carbs");
+var sugarsValueEl = document.querySelector("#sugars");
+var displayData = function (common, foodname) {
+  console.log(common);
+  console.log(foodname);
+  for (i = 0; common.length < 1; index++) {
+    var sodiumValue = common[0].full_nutrients[17].value;
+    var potassiumValue = common[0].full_nutrients[16].value;
+    var carbsValue = common[0].full_nutrients[2].value;
+    var sugarsValue = common[0].full_nutrients[10].value;
+    sodiumValueEl.textContent = sodiumValue;
+    potassiumValueEl.textContent = potassiumValue;
+    carbsValueEl.textContent = carbsValue;
+    sugarsValueEl.textContent = sugarsValue;
+  }
+};
 
 function makeQuery1() {
   var foodname = document.querySelector("#food-name").value.trim();
   var displaySearch = document.createElement("h2");
   displaySearch.textContent = "";
+  searchContainerEl.replaceWith("");
   // empty box/bad name if statement goes here, not farther down
   fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
     {
@@ -32,55 +48,39 @@ function makeQuery1() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      displayData(data, foodname)
+      // console.log(data);
     });
   //next stuff here
   // if statement for empty or bad search -- inside function?
-  if (Array.length === 0 || foodname.value === "") {
-    alert("Nothing by that name! Try again");
+  if (foodname.value === "") {
+    alert("You must type in the name of a food!");
     foodname.value = "";
   }
 
   // variables for search term and nutrient categories -- also inside function
-  var searchContainerEl = document.querySelector("#search-return");
-  var nutrientsContainer = document.querySelector("#nutrients");
+
   displaySearch.textContent = foodname;
   searchContainerEl.appendChild(displaySearch);
 
-  var sodiumValue = common[0].full_nutrients[17].value;
-  var potassiumValue = common[0].full_nutrients[16].value;
-  var carbsValue = common[0].full_nutrients[2].value;
-  var sugarsValue = common[0].full_nutrients[10].value;
+  // var sodiumValue = common[0].full_nutrients[17].value;
+  // var potassiumValue = common[0].full_nutrients[16].value;
+  // var carbsValue = common[0].full_nutrients[2].value;
+  // var sugarsValue = common[0].full_nutrients[10].value;
 
-  var sodiumValueEl = document.querySelector("#sodium");
-  var potassiumValueEl = document.querySelector("#potassium");
-  var carbsValueEl = document.querySelector("#carbs");
-  var sugarsValueEl = document.querySelector("#sugars");
+  // var sodiumValueEl = document.querySelector("#sodium");
+  // var potassiumValueEl = document.querySelector("#potassium");
+  // var carbsValueEl = document.querySelector("#carbs");
+  // var sugarsValueEl = document.querySelector("#sugars");
 
-  sodiumValueEl.textContent = sodiumValue;
-  potassiumValueEl.textContent = potassiumValue;
-  carbsValueEl.textContent = carbsValue;
-  sugarsValueEl.textContent = sugarsValue;
+
 
 
 };
 
 buttonEl.addEventListener("click", makeQuery1);
 
-var sodiumValue = common[0].full_nutrients[17].value;
-var potassiumValue = common[0].full_nutrients[16].value;
-var carbsValue = common[0].full_nutrients[2].value;
-var sugarsValue = common[0].full_nutrients[10].value;
 
-var sodiumValueEl = document.querySelector("#sodium");
-var potassiumValueEl = document.querySelector("#potassium");
-var carbsValueEl = document.querySelector("#carbs");
-var sugarsValueEl = document.querySelector("#sugars");
-
-sodiumValueEl.textContent = sodiumValue;
-potassiumValueEl.textContent = potassiumValue;
-carbsValueEl.textContent = carbsValue;
-sugarsValueEl.textContent = sugarsValue;
 
 
 
