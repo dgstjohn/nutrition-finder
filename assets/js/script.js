@@ -1,7 +1,6 @@
 // variables for HTML placement
 var buttonEl = document.querySelector("#btn");
 var section = document.querySelector(".searchDiv");
-section.textContent = "test";
 var nutrientsContainer = document.querySelector("#nutrients");
 // variables for nutrient info aimed at spans
 var sodiumValueEl = document.querySelector("#sodium");
@@ -10,10 +9,10 @@ var carbsValueEl = document.querySelector("#carbs");
 var sugarsValueEl = document.querySelector("#sugars");
 // loop through first index of returned array to place nutrient info based on index value
 var displayData = function (common, foodname) {
-  console.log(common);
-  console.log(foodname);
+  console.log(common.common);
+  // console.log(foodname);
   for (i = 0; common.length < 1; index++) {
-    var sodiumValue = common[0].full_nutrients[17].value;
+    var sodiumValue = common.common[0].full_nutrients[17].value;
     var potassiumValue = common[0].full_nutrients[16].value;
     var carbsValue = common[0].full_nutrients[2].value;
     var sugarsValue = common[0].full_nutrients[10].value;
@@ -26,7 +25,7 @@ var displayData = function (common, foodname) {
 };
 // fetch request for data
 function makeQuery1() {
-  section.textContent = "";
+  // section.textContent = "";
   // set value of search term
   var foodname = document.querySelector("#food-name").value.trim();
   // clear any prior instances of h2 from search term return
@@ -63,16 +62,16 @@ function makeQuery2() {
   // Create a variable called `searchTerm` that will use `document.querySelector()` to target the `id` of the input
   // Use `.value` to capture the value of the input and store it in the variable
   var searchTerm = document.querySelector("#food-name").value;
-  console.log(searchTerm);
+  // console.log(searchTerm);
   // Make a `fetch` request concatenating the `searchTerm` to the query URL
   fetch("https://foodish-api.herokuapp.com/api/images/" + searchTerm)
     .then(function (response) {
-      console.log("first.then.response", response);
+      // console.log("first.then.response", response);
       return response.json();
     })
     .then(function (results) {
-      console.log("second.then.results", results);
-      console.log("logging image URL", results.image);
+      // console.log("second.then.results", results);
+      // console.log("logging image URL", results.image);
       if (results.image !== "") {
         document.querySelector(
           "#food-container"
