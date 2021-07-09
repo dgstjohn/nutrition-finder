@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Nutrition Finder</title>
+    <title>Project One</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css"  media="screen,projection"/>
 </head>
-
 <body>
-    <h1>Search a picture based on the type of food </h1>
-    Search term: <input type="text" id="searchTerm" value="" />
-    <button id="btn" onclick="myFunction()">Search here</button>
-    <div id="food-container" class="container"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="assets/css/script.js"></script>
- 
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Nutrition Finder</a>
+            </div>
+        </nav>
+    </header>
+    <h5 class="col s1 offset-s1">Enter a food below to discover the nutrition facts!</h5>
+    <div id="search-box" class="row">
+        <label class="row" for="food">Enter food here:</label>
+        <input class="col s4 offset-s1" type="text" placeholder="Search..." name="food-name" id="food-name" />
+        <button class="row offset-s1" id="btn">Search</button>
+    </div>
+    <div class="searchDiv">
+        <div id=“nutrients”>
+            <h>Nutrients for a single serving:</h4>
+            <p>Sodium: <span id=“sodium”></span> milligrams</p>
+            <p>Potassium: <span id=“potassium”></span> milligrams</p>
+            <p>Carbohydrates: <span id=“carbs”></span> grams</p>
+            <p>Sugars (total): <span id=“sugars”></span> grams</p>
+          </div>
+    </div>
+    <div id="food-container"></div>
+    <div id="saved-searches"></div>
+    <footer class="page-footer">
+        <div class="container">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2021 Nutrition Finder
+            <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>&nbsp;|&nbsp;
+            <a class="grey-text text-lighten-4 right" href="https://foodish-api.herokuapp.com">Foodish</a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="./assets/js/materialize.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

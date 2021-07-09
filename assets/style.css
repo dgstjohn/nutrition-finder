@@ -1,0 +1,49 @@
+body {
+    background-color: #f7ede2;
+}
+
+header {
+    color: #f7ede2;
+}
+
+h5 {
+    margin-left: 100px;
+    margin-top: 20px;
+    color: #84a59d;
+}
+
+form {
+    margin-top: 10px;
+    color: #84a59d;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #f7ede2;
+}
+
+button {
+    background-color: #84a59d;
+    border: #f6bd60;
+    color:#f7ede2;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+h2:first-letter {
+    text-transform: capitalize;
+}
+
+h4 {
+    color:#84a59d;
+}
+
+p {
+    color:#84a59d;
+}
