@@ -14,11 +14,8 @@ var secondSavedSearchEl = document.getElementById("search2");
 var thirdSavedSearchEl = document.getElementById("search3");
 var fourthSavedSearchEl = document.getElementById("search4");
 
-
-
-// makeQuery1 just encapsulates the actions for the button click
+// makeQuery1 encapsulates the actions for the button click and calls makeQuery2 for the Foodish API
 function makeQuery1() {
-  // clear input box
   // variable to pass into the query string for the search
   var foodname = document.querySelector("#food-name").value.trim();
   if (foodname.value = "") {
@@ -60,8 +57,10 @@ function makeQuery1() {
           var sugarsIndexPoint = responseArray[0].full_nutrients[index].value;
           sugarsValueEl.textContent = sugarsIndexPoint;
         }
-
       }
+      document.querySelector(
+        "#food-container"
+      ).innerHTML = `<div class="row"><div class="col s3"><img src="${responseArray[0].photo.thumb}" style="width:100%"></div></div>`;
     }
     );
   displaySearch.textContent = foodname;
@@ -73,11 +72,45 @@ function makeQuery1() {
   }
   console.log(storeIt);
 
-localStorage.setItem(JSON.stringify(storeIt.id),JSON.stringify(storeIt));
+localStorage.setItem(JSON.stringify(storeIt.id),JSON.stringify(storeIt.name));
 storageCounter++;
+makeQuery2();
+
+// localStorage.getItem(JSON.parse("search1"));
+// var search1text = document.querySelector("#search1");
+
+
 };
 
+// fetch request for data from Foodish API
+function makeQuery2() {
+  // Create a variable called `searchTerm` that will use `document.querySelector()` to target the `id` of the input
+  // Use `.value` to capture the value of the input and store it in the variable
+  // add toLowerCase method because all Foodish API values are in lower case
+  var searchTerm = document.querySelector("#food-name").value.toLowerCase();
+  // console.log(searchTerm);
+  // Make a `fetch` request concatenating the `searchTerm` to the query URL
+  fetch("https://foodish-api.herokuapp.com/api/images/" + searchTerm)
+    .then(function (response) {
+      // console.log("first.then.response", response);
+      return response.json();
+    })
+    .then(function (results) {
+      // console.log("second.then.results", results);
+      // console.log("logging image URL", results.image);
+      var pictureContainer = document.querySelector("#food-container");
+      if (pictureContainer.innerHTML === `<div class="row"><div class="col s3"><img src="https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png"</div></div>`&& results.image !== null) {
+        pictureContainer.innerHTML = "";
+        document.querySelector(
+          "#food-container"
+        ).innerHTML = `<div class="row"><div class="col s3"><img src="${results.image}" style="width:100%"></div></div>`;
+      }
+      else {
+        document.querySelector(
+          "#food-container"
+        ).innerHTML = `<div class="row"><div class="col s3"><img src="../assets/images/notavailable.jpg" style="width:100%"></div></div>`;
+      }
+    });
+};
 
 buttonEl.addEventListener("click", makeQuery1);
- 
-localStorage.getItem(JSON.parse("search1"));

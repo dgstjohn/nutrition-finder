@@ -24,7 +24,7 @@ function makeQuery2() {
       else {
         document.querySelector(
           "#food-container"
-        ).innerHTML = `<div class="row"><div class="col s3"><img src="https://dgstjohn.github.io/nutrition-finder/assets/images/notavailable.jpg" style="width:100%"></div></div>`;
+        ).innerHTML = `<div class="row"><div class="col s3"><img src="../assets/images/notavailable.jpg" style="width:100%"></div></div>`;
       }
     });
 };
