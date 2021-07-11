@@ -18,8 +18,12 @@ var fourthSavedSearchEl = document.getElementById("search4");
 function makeQuery1() {
   // variable to pass into the query string for the search
   var foodname = document.querySelector("#food-name").value.trim();
-  if (foodname.value = "") {
-    alert("You must type in the name of a food!");
+  // modal call if no value is placed into input box
+  if (document.querySelector("#food-name").value === "") {
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
   }
 
   // empty box/bad name if statement goes here, not farther down
@@ -58,13 +62,15 @@ function makeQuery1() {
           sugarsValueEl.textContent = sugarsIndexPoint;
         }
       }
-      document.querySelector(
+      var picDisplay = document.querySelector(
         "#food-container"
-      ).innerHTML = `<div class="row"><div class="col s3"><img src="${responseArray[0].photo.thumb}" style="width:100%"></div></div>`;
+      ).innerHTML = `<div class="row"><img src="${responseArray[0].photo.thumb}" style="width:100%"></div>`;
     }
     );
   displaySearch.textContent = foodname;
   displaySearchEl.appendChild(displaySearch);
+
+  // get nutrients info from script and append to displaySearchEl
 
   var storeIt = {
     id: 'search'+storageCounter,
@@ -103,12 +109,12 @@ function makeQuery2() {
         pictureContainer.innerHTML = "";
         document.querySelector(
           "#food-container"
-        ).innerHTML = `<div class="row"><div class="col s3"><img src="${results.image}" style="width:100%"></div></div>`;
+        ).innerHTML = `<div class="row"><img src="${results.image}" style="width:100%"></div>`;
       }
       else {
         document.querySelector(
           "#food-container"
-        ).innerHTML = `<div class="row"><div class="col s3"><img src="../assets/images/notavailable.jpg" style="width:100%"></div></div>`;
+        ).innerHTML = `<div class="row"><img src="../assets/images/notavailable.jpg" style="width:100%"></div>`;
       }
     });
 };
