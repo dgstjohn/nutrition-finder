@@ -1,40 +1,32 @@
-// variables for HTML placement
 var buttonEl = document.querySelector("#btn");
-var section = document.querySelector(".searchDiv");
-section.textContent = "test";
-var nutrientsContainer = document.querySelector("#nutrients");
-// variables for nutrient info aimed at spans
 var sodiumValueEl = document.querySelector("#sodium");
 var potassiumValueEl = document.querySelector("#potassium");
 var carbsValueEl = document.querySelector("#carbs");
 var sugarsValueEl = document.querySelector("#sugars");
-// loop through first index of returned array to place nutrient info based on index value
-var displayData = function (common, foodname) {
-  console.log(common);
-  console.log(foodname);
-  for (i = 0; common.length < 1; index++) {
-    var sodiumValue = common[0].full_nutrients[17].value;
-    var potassiumValue = common[0].full_nutrients[16].value;
-    var carbsValue = common[0].full_nutrients[2].value;
-    var sugarsValue = common[0].full_nutrients[10].value;
-    sodiumValueEl.textContent = sodiumValue;
-    potassiumValueEl.textContent = potassiumValue;
-    carbsValueEl.textContent = carbsValue;
-    sugarsValueEl.textContent = sugarsValue;
-    console.log(sodiumValue, potassiumValue);
-  }
-};
-// fetch request for data
+var displaySearch = document.createElement("h2");
+var displaySearchEl = document.querySelector("#search-return");
+var responseArray = [];
+var localStorageArray = [];
+var storageCounter = 1;
+var savedSearchesEl = document.querySelector("#saved-searches");
+var firstSavedSearchEl = document.getElementById("search1");
+var secondSavedSearchEl = document.getElementById("search2");
+var thirdSavedSearchEl = document.getElementById("search3");
+var fourthSavedSearchEl = document.getElementById("search4");
+
+
+
+// makeQuery1 just encapsulates the actions for the button click
 function makeQuery1() {
-  section.textContent = "";
-  // set value of search term
+  // clear input box
+  // variable to pass into the query string for the search
   var foodname = document.querySelector("#food-name").value.trim();
-  // clear any prior instances of h2 from search term return
-  var displaySearch = document.createElement("h2");
-  displaySearch.textContent = "";
-  // API call
-  fetch(
-    `https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
+  if (foodname.value = "") {
+    alert("You must type in the name of a food!");
+  }
+
+  // empty box/bad name if statement goes here, not farther down
+  fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodname}&detailed=true&branded=false`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -47,44 +39,45 @@ function makeQuery1() {
       return response.json();
     })
     .then(function (data) {
-      displayData(data, foodname);
-      if (foodname.value === "") {
-        alert("You must type in the name of a food!");
-        foodname.value = "";
+      responseArray = data.common;
+      console.log(responseArray);
+      for (var index = 0; index < responseArray[0].full_nutrients.length; index++) {
+
+        // go thru full nutrients to find index value for that 
+        if (responseArray[0].full_nutrients[index].attr_id === 307) {
+          var sodiumIndexPoint = responseArray[0].full_nutrients[index].value;
+          sodiumValueEl.textContent = sodiumIndexPoint;
+        }
+        if (responseArray[0].full_nutrients[index].attr_id === 306) {
+          var potassiumIndexPoint = responseArray[0].full_nutrients[index].value;
+          potassiumValueEl.textContent = potassiumIndexPoint;
+        }
+        if (responseArray[0].full_nutrients[index].attr_id === 205) {
+          var carbsIndexPoint = responseArray[0].full_nutrients[index].value;
+          carbsValueEl.textContent = carbsIndexPoint;
+        }
+        if (responseArray[0].full_nutrients[index].attr_id === 269) {
+          var sugarsIndexPoint = responseArray[0].full_nutrients[index].value;
+          sugarsValueEl.textContent = sugarsIndexPoint;
+        }
+
       }
-      // display search term as header
-      displaySearch.textContent = foodname;
-      section.appendChild(displaySearch);
-      // console.log(data);
-    });
-}
-// Create a function called `myFunction()`
-function makeQuery2() {
-  // Create a variable called `searchTerm` that will use `document.querySelector()` to target the `id` of the input
-  // Use `.value` to capture the value of the input and store it in the variable
-  var searchTerm = document.querySelector("#food-name").value;
-  console.log(searchTerm);
-  // Make a `fetch` request concatenating the `searchTerm` to the query URL
-  fetch("https://foodish-api.herokuapp.com/api/images/" + searchTerm)
-    .then(function (response) {
-      console.log("first.then.response", response);
-      return response.json();
-    })
-    .then(function (results) {
-      console.log("second.then.results", results);
-      console.log("logging image URL", results.image);
-      if (results.image !== "") {
-        document.querySelector(
-          "#food-container"
-        ).innerHTML = `<div class="row"><div class="col s3"><img src="${results.image}" style="width:100%"></div></div>`;
-      } else {
-        document.querySelector(
-          "#food-container"
-        ).innerHTML = `<div class="row"><div class="col s3"><img src="./assets/images/notavailable.jpg" style="width:100%"></div></div>`;
-      }
-    });
-  // Clear the search bar after the food is searched
-  document.getElementById("food-name").value = "";
-}
+    }
+    );
+  displaySearch.textContent = foodname;
+  displaySearchEl.appendChild(displaySearch);
+
+  var storeIt = {
+    id: 'search'+storageCounter,
+    name: foodname,
+  }
+  console.log(storeIt);
+
+localStorage.setItem(JSON.stringify(storeIt.id),JSON.stringify(storeIt));
+storageCounter++;
+};
+
+
 buttonEl.addEventListener("click", makeQuery1);
-buttonEl.addEventListener("click", makeQuery2);
+ 
+localStorage.getItem(JSON.parse("search1"));
