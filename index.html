@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project One</title>
     <link rel="stylesheet" href="./assets/style.css" />
-    <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css" media="screen,projection" />
 </head>
+
 <body>
     <header>
         <nav>
@@ -15,33 +17,56 @@
                 <a href="#" class="brand-logo">Nutrition Finder</a>
             </div>
         </nav>
-    </header>
-    <h5 class="col s1 offset-s1">Enter a food below to discover the nutrition facts!</h5>
-    <div id="search-box" class="row">
-        <label class="row" for="food">Enter food here:</label>
-        <input class="col s4 offset-s1" type="text" placeholder="Search..." name="food-name" id="food-name" />
-        <button class="row offset-s1" id="btn">Search</button>
+  </header>
+    <div class="container">
+        <h4 class="col s1 offset-s1">Enter a food below to discover the nutrition facts!</h4>
+        <h5>(Be as specific as you want -- "cheese" and "lobster mac & cheese" both work!)</h5>
+        <div id="search-box" class="row">
+            <label class="row" for="food">Enter food here:</label>
+            <input class="col s4 offset-s1" type="text" placeholder="Search..." name="food-name" id="food-name" />
+            <button class="row offset-s1" id="btn">Search</button>
+        </div>
+        <div class="row">
+            <div id="search-return" class="col s6"></div>
+            <div id=“nutrients” class="col s6">
+                <h4>Nutrients for a single serving:</h4>
+                <p>Sodium: <span id="sodium"></span> milligrams&nbsp;&nbsp;|&nbsp;&nbsp;Potassium: <span id="potassium"></span> milligrams</p>
+                <p>Carbohydrates: <span id="carbs"></span> grams&nbsp;&nbsp;|&nbsp;&nbsp;Sugars (total): <span id="sugars"></span> grams</p>
+            </div>
+            <div id="food-container" class="col s6"></div>
+        </div>
+        
+        <div id="saved-searches">
+            <div id="search1"></div>
+            <div id="search2"></div>
+            <div id="search3"></div>
+            <div id="search4"></div>
+        </div>
     </div>
-    <div id=“search-return”>
-      <div id=“nutrients”>
-        <h>Nutrients for a single serving:</h4>
-        <p>Sodium: <span id=“sodium”></span> milligrams</p>
-        <p>Potassium: <span id=“potassium”></span> milligrams</p>
-        <p>Carbohydrates: <span id=“carbs”></span> grams</p>
-        <p>Sugars (total): <span id=“sugars”></span> grams</p>
-      </div>
-    </div>  
     <footer class="page-footer">
         <div class="container">
-          <div class="footer-copyright">
-            <div class="container">
-            © 2021 Nutrition Finder
-            <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>
-            <a class="grey-text text-lighten-4 right" href="https://foodish-api.herokuapp.com">Foodish&nbsp;|&nbsp;</a>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2021 Nutrition Finder
+                    <a class="grey-text text-lighten-4 right" href="https://developer.nutritionix.com">Nutritionix</a>
+                    <a class="grey-text text-lighten-4 right"
+                        href="https://foodish-api.herokuapp.com">Foodish&nbsp;|&nbsp;</a>
+                </div>
             </div>
         </div>
     </footer>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Try again!</h4>
+            <p>You need to enter a food name for the search to work!</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
     <script type="text/javascript" src="./assets/js/materialize.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
+
