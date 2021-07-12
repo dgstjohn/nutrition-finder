@@ -89,6 +89,7 @@ makeQuery2();
 };
 
 // fetch request for data from Foodish API
+
 function makeQuery2() {
   // Create a variable called `searchTerm` that will use `document.querySelector()` to target the `id` of the input
   // Use `.value` to capture the value of the input and store it in the variable
